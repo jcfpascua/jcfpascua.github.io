@@ -54,7 +54,11 @@ h2, h3 {
     color: #003049;  
 }
 
-.project1, .project2, .project3, .project4, .assignment1, .assignment2, .assignment3, .assignment4 {
+#about {
+    color: #272933;
+}
+
+.project1, .assignment1 {
     background: #4a4e69;  
     padding: 15px;
     margin: 15px 0;
@@ -63,16 +67,16 @@ h2, h3 {
     transition: transform 0.3s ease;
 }
 
-.project1 a, .project2 a, .project3 a, .project4 a, .assignment1 a, .assignment2 a, .assignment3 a, .assignment4 a {
-    color: #9a8c98; 
+.project1 a, .assignment1 a {
+    color: #b3d7ec; 
 }
 
-.project1 a:hover, .project2 a:hover, .project3 a:hover, .project4 a:hover, .assignment1 a:hover, .assignment2 a:hover, .assignment3 a:hover, .assignment4 a:hover {
+.project1 a:hover, .assignment1 a:hover {
     color: #003049; 
     text-decoration: underline;
 }
 
-.project1:hover, .project2:hover, .project3:hover, .project4:hover, .assignment1:hover, .assignment2:hover, .assignment3:hover, .assignment4:hover {
+.project1:hover, .assignment1:hover {
     transform: scale(1.1);
 }
 
