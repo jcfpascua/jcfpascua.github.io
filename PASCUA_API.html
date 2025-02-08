@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin Impact Character Search</title>
+    <link rel="stylesheet" href="genshin.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Genshin Impact Character by ID</h1>
+        <input type="number" id="character-id" placeholder="Enter Character ID">
+        <button class="button" onclick="fetchCharacter()">
+            <span class="button_top"> Search </span>
+        </button>
+    
+        <div id="character-info"></div>
+    </div>
+
+    
+
+    <script>
+        async function fetchAllCharacters() {
+            let allCharacters = [];
+            let currentPage = 1;
+            let totalPages = 1; 
+
+            try {
+                while (currentPage <= totalPages) {
+                    const response = await fetch(`https://gsi.fly.dev/characters?page=${currentPage}`);
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                    const data = await response.json();
+                    allCharacters = allCharacters.concat(data.results); // Merge results
+                    totalPages = data.total_pages; // Update total pages
+                    currentPage++; // Move to next page
+                }
+            } catch (error) {
+                console.error("Error fetching character data:", error);
+                return [];
+            }
+
+            return allCharacters;
+        }
+
+        async function fetchCharacter() {
+            const id = document.getElementById('character-id').value;
+            const characterInfo = document.getElementById('character-info');
+
+            if (!id) {
+                characterInfo.innerHTML = "Please enter an ID.";
+                return;
+            }
+
+            characterInfo.innerHTML = "Fetching data...";
+
+            const characters = await fetchAllCharacters(); // Fetch all pages
+
+            // Find character by ID
+            const character = characters.find(char => char.id == id);
+
+            if (!character) {
+                characterInfo.innerHTML = "Character not found.";
+                return;
+            }
+
+            // Display character details in a card
+            characterInfo.innerHTML = `
+                <div class="card">
+                    <h2>${character.name}</h2>
+                    <p><strong>Rarity:</strong> ${character.rarity.replace('_', ' ')}</p>
+                    <p><strong>Weapon:</strong> ${character.weapon}</p>
+                    <p><strong>Vision:</strong> ${character.vision}</p>
+                    <a href="${character.wiki_url}" target="_blank">More Info</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
