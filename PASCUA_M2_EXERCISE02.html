@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Data Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Person Details</h2>
+        <p><strong>Name:</strong> <span id="name"></span></p>
+        <p><strong>Age:</strong> <span id="age"></span></p>
+        <p><strong>Hobbies:</strong> <span id="hobbies"></span></p>
+    </div>
+
+    <script>
+        fetch("data.json")
+        .then(response => response.json())
+        .then(person => {
+            document.getElementById("name").textContent = person.name;
+            document.getElementById("age").textContent = person.age;
+            document.getElementById("hobbies").textContent = person.hobbies.join(", ");
+    })
+    .catch(error => console.error("Error loading JSON:", error));
+
+    </script>
+
+</body>
+</html>
