@@ -9,6 +9,7 @@
 <body>
     <div class="container">
         <h1>Search Genshin Impact Character by ID</h1>
+        <h4>Enter values from 1-51</h4>
         <input type="number" id="character-id" placeholder="Enter Character ID">
         <button class="button" onclick="fetchCharacter()">
             <span class="button_top"> Search </span>
@@ -31,9 +32,9 @@
                     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
                     const data = await response.json();
-                    allCharacters = allCharacters.concat(data.results); // Merge results
-                    totalPages = data.total_pages; // Update total pages
-                    currentPage++; // Move to next page
+                    allCharacters = allCharacters.concat(data.results); 
+                    totalPages = data.total_pages; 
+                    currentPage++; 
                 }
             } catch (error) {
                 console.error("Error fetching character data:", error);
@@ -54,9 +55,9 @@
 
             characterInfo.innerHTML = "Fetching data...";
 
-            const characters = await fetchAllCharacters(); // Fetch all pages
+            const characters = await fetchAllCharacters(); 
 
-            // Find character by ID
+          
             const character = characters.find(char => char.id == id);
 
             if (!character) {
@@ -64,7 +65,6 @@
                 return;
             }
 
-            // Display character details in a card
             characterInfo.innerHTML = `
                 <div class="card">
                     <h2>${character.name}</h2>
