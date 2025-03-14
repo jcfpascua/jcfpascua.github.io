@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Team Builder</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <h1>Pokémon Team Builder</h1>
+    <div class="team-builder">
+        <div class="search-container">
+            <input type="text" id="pokemon-search" placeholder="Search Pokémon...">
+            <ul id="search-results"></ul>
+        </div>
+        <div class="team-container">
+            <h2>Your Team</h2>
+            <div id="team"></div>
+            <button id="save-team">Save Team</button>
+        </div>
+        <div class="saved-teams">
+            <h2>Saved Teams</h2>
+            <ul id="saved-teams-list"></ul>
+        </div>
+    </div>
+    <div class="saved-teams">
+        <h2>Saved Teams</h2>
+        <button id="clear-all-teams">🗑 Clear All Teams</button>
+        <div id="saved-teams-list"></div>
+    </div>
+    
+</body>
+</html>
